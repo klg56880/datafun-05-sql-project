@@ -30,6 +30,7 @@ git clone site_URL
 Created a new file in my datafun-05-sql-project folder named .gitignore
 
 Typed .venv/ into line 1
+
 Typed .vscode/ into line 2
 
 ## Create and activate a Python virtual environment
