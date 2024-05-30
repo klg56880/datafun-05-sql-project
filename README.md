@@ -113,7 +113,7 @@ CREATE TABLE books (
 Created book manager file and use appropriate code to create the database, tables, and fill those tables with the csv data.
 
 ## Create various SQL files to practice manipulating the data
-Create files to house code meant to insert, delete, and update records, as well as query aggregation, filter, join, etc. For example, here is the code used to select title and year publishes, and sort by descending year:
+Create files to house code meant to insert, delete, and update records, as well as query aggregation, filter, join, etc. For example, here is the code used to select title and year published, and sort by descending year:
 
 ```shell
 
