@@ -9,43 +9,40 @@ import csv
 import pathlib
 import sqlite3
 import uuid
+import logging
 
 # Import Local Dependencies
-#import pandas as pd
-#import pyarrow
-
-
-import sqlite3
 import pandas as pd
-import pathlib
+import pyarrow
 
-# Start by deleting any tables if the exist already
-# We want to be able to re-run this script as needed.
-# DROP tables in reverse order of creation 
-# DROP dependent tables (with foreign keys) first
+# Define database file in the root project folder
+db_file = "C:\\Users\\klg56\\OneDrive\\Documents\\datafun-05-sql-project\\project.db"
 
-#DROP TABLE IF EXISTS books;
-#DROP TABLE IF EXISTS authors;
+# Define function to insert records from a CSV
+def insert_data_from_csv():
+    """Function to use pandas to read data from CSV files (in 'data' folder)
+    and insert the records into their respective tables."""
+    try:
+        author_data_path = pathlib.Path("data", "authors.csv")
+        book_data_path = pathlib.Path("data", "books.csv")
+        authors_df = pd.read_csv(author_data_path)
+        books_df = pd.read_csv(book_data_path)
+        with sqlite3.connect(db_file) as conn:
+            # use the pandas DataFrame to_sql() method to insert data
+            # pass in the table name and the connection
+            authors_df.to_sql("authors", conn, if_exists="replace", index=False)
+            books_df.to_sql("books", conn, if_exists="replace", index=False)
+            print("Data inserted successfully.")
+    except (sqlite3.Error, pd.errors.EmptyDataError, FileNotFoundError) as e:
+        print("Error inserting data:", e)
 
-#Create the authors table 
-#Note that the author table has no foreign keys, so it is a standalone table
+def main():
+    insert_data_from_csv()
 
-#CREATE TABLE authors (
-#    author_id TEXT PRIMARY KEY,
-#    first_name TEXT,
-#    last_name TEXT,
-#    year_born INTEGER
-#);
+if __name__ == "__main__":
+    logging.info("Program started") # add this at the beginning of the main method
+    main()
+    logging.info("Program ended")  # add this at the end of the main method
 
-# Create the books table
-# Note that the books table has a foreign key to the authors table
-# This means that the books table is dependent on the authors table
-# Be sure to create the standalone authors table BEFORE creating the books table.
-
-#CREATE TABLE books (
-#    book_id TEXT PRIMARY KEY,
-#    title TEXT,
-#    year_published INTEGER,
-#    author_id TEXT,
-#    FOREIGN KEY (author_id) REFERENCES authors(author_id)
-#);
+# Define function for inserting new records to the data tables
+def insert_records():

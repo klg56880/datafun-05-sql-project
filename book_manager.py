@@ -1,6 +1,16 @@
+'''
+Module 5 SQL Project
+Author: Kari Taylor
+Objective: Create a Python script that demonstrates the ability to interact with a SQL database, including creating a database, defining a schema, and executing various SQL commands. Incorporate logging to document the process and provide user feedback.
+'''
+
 import sqlite3
 import pandas as pd
 import pathlib
+import logging
+
+# Configure logging to write to a file, appending new logs to the existing file
+logging.basicConfig(filename='log.txt', level=logging.DEBUG, filemode='a', format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Define the database file in the current root project directory
 db_file = pathlib.Path("project.db")
@@ -51,6 +61,8 @@ def main():
     create_database()
     create_tables()
     insert_data_from_csv()
-    
+
 if __name__ == "__main__":
+    logging.info("Program started") # add this at the beginning of the main method
     main()
+    logging.info("Program ended")  # add this at the end of the main method
