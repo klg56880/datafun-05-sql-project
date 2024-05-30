@@ -4,4 +4,4 @@ SELECT DISTINCT first, last, title
 FROM authors
     JOIN books
         ON authors.author_id = books.author_id
-    WHERE title = "The Hobbit"
+    WHERE title = "The Hobbit";

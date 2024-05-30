@@ -2,5 +2,5 @@
 
 SELECT first, last, title
 FROM authors
-    JOIN books
-        ON authors.author_id = books.author_id
+    INNER JOIN books
+        ON authors.author_id = books.author_id;
