@@ -81,6 +81,48 @@ git push origin main
 
 ```
 
+## Add and populate data folder
+Manually add a data folder in the root project folder and add two .csv files --- one named authors.csv and the other named books.csv. 
+
+## Create the initialize database py file
+Use appropriate code to create the project database in the root project folder.
+
+## Create the operations database py file
+Use appropriate code to call files, perform functions, and manipulate data.
+
+## Create SQL file for creating tables in the project database
+Use the following code to create tables for the csv data:
+
+```shell
+
+CREATE TABLE authors (
+    author_id TEXT PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT
+);
+CREATE TABLE books (
+    book_id TEXT PRIMARY KEY,
+    title TEXT,
+    year_published INTEGER,
+    author_id TEXT,
+    FOREIGN KEY (author_id) REFERENCES authors(author_id)
+);
+
+```
+## Create book manager py file 
+Created book manager file and use appropriate code to create the database, tables, and fill those tables with the csv data.
+
+## Create various SQL files to practice manipulating the data
+Create files to house code meant to insert, delete, and update records, as well as query aggregation, filter, join, etc. For example, here is the code used to select title and year publishes, and sort by descending year:
+
+```shell
+
+SELECT title, year_published
+FROM books
+    ORDER BY year_published DESC;
+
+```
+
 ## Repeated Git add and commit
 Periodically add, commit, and push files from my machine to the associated online repo using the following commands:
 ```shell
@@ -93,3 +135,5 @@ git push origin main
 
 ## Created Module 5 project according to the following specifications:
 - [datafun-05-spec](https://github.com/denisecase/datafun-05-spec)
+
+Also, SQLBolt interactive lessons were incredibly helpful: (https://sqlbolt.com/)
